@@ -7,6 +7,8 @@
 !CLAUDE.md
 !hooks/
 !hooks/**
+!rules/
+!rules/**
 !plugins/
 !plugins/**
 plugins/marketplaces/
