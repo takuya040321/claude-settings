@@ -4,6 +4,7 @@
 # 管理対象
 !.gitignore
 !settings.json
+!CLAUDE.md
 !hooks/
 !hooks/**
 !plugins/
