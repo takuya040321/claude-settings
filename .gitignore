@@ -9,9 +9,6 @@
 !hooks/**
 !rules/
 !rules/**
-!plugins/
-!plugins/**
-plugins/marketplaces/
 !skills/
 !skills/**
 !commands/
