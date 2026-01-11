@@ -1,0 +1,36 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(flutter:*)",
+      "Bash(git merge:*)",
+      "Bash(git add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "Bash(git merge:*)",
+      "Bash(git branch:*)",
+      "Bash(gh:*)",
+      "mcp__serena__*",
+      "mcp__serena__find_file",
+      "Bash(npx tsc:*)",
+      "Bash(git pull:*)",
+      "Bash(git reset:*)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "model": "opus",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ]
+  },
+  "language": "日本語"
+}

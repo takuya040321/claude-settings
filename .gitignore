@@ -1,0 +1,17 @@
+# すべてを無視
+*
+
+# 管理対象
+!.gitignore
+!settings.json
+!hooks/
+!hooks/**
+!plugins/
+!plugins/**
+plugins/marketplaces/
+!skills/
+!skills/**
+!commands/
+!commands/**
+!agents/
+!agents/**
