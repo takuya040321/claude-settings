@@ -1,11 +1,18 @@
 {
   "skills": [
     {
+      "name": "python",
+      "description": "Python開発の包括スキル（コーディング・テスト・環境設定）",
+      "keywords": ["python", "py", "パイソン"],
+      "tech_stack": ["python"],
+      "file_patterns": [".py", ".pyi"]
+    },
+    {
       "name": "python-coding",
       "description": "Pythonコーディングのベストプラクティスとコード品質保証",
-      "keywords": ["python", "py", ".py", "black", "ruff", "mypy", "pip", "pyproject", "pytest"],
+      "keywords": ["black", "ruff", "mypy", "フォーマット", "リント", "型チェック"],
       "tech_stack": ["python"],
-      "file_patterns": [".py", ".pyi", "pyproject.toml", "requirements.txt", "setup.py"]
+      "file_patterns": [".py", ".pyi"]
     },
     {
       "name": "python-testing",
@@ -13,6 +20,13 @@
       "keywords": ["pytest", "テスト", "test", "unittest", "mock", "fixture"],
       "tech_stack": ["python"],
       "file_patterns": ["test_*.py", "*_test.py", "conftest.py"]
+    },
+    {
+      "name": "python-environment",
+      "description": "Python環境構築・依存管理（pyproject.toml、venv、uv、poetry）",
+      "keywords": ["pyproject", "venv", "uv", "poetry", "環境", "依存関係", "仮想環境", "pyenv"],
+      "tech_stack": ["python"],
+      "file_patterns": ["pyproject.toml", "requirements.txt", "setup.py", ".python-version"]
     },
     {
       "name": "commit",
