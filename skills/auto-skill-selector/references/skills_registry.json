@@ -307,6 +307,118 @@
       "keywords": ["vt スクレイピング", "vtデータ取得"],
       "tech_stack": ["python", "nodejs", "gas"],
       "file_patterns": []
+    },
+    {
+      "name": "csharp",
+      "description": "C#開発の包括スキル（コーディング・テスト・環境設定・WebAPI）",
+      "keywords": ["c#", "csharp", "シーシャープ", ".net", "dotnet"],
+      "tech_stack": ["csharp", "dotnet"],
+      "file_patterns": [".cs", ".csproj", ".sln"]
+    },
+    {
+      "name": "csharp-coding",
+      "description": "C#コーディングのベストプラクティスとコード品質保証",
+      "keywords": ["dotnet format", "dotnet build", "linq", "async"],
+      "tech_stack": ["csharp", "dotnet"],
+      "file_patterns": [".cs"]
+    },
+    {
+      "name": "csharp-testing",
+      "description": "xUnitを使ったC#テストの作成・実行",
+      "keywords": ["xunit", "moq", "dotnet test", "c#テスト"],
+      "tech_stack": ["csharp", "dotnet"],
+      "file_patterns": ["*Tests.cs", "*Test.cs"]
+    },
+    {
+      "name": "csharp-environment",
+      "description": "C#環境構築・依存管理（dotnet CLI、NuGet）",
+      "keywords": ["dotnet new", "nuget", "パッケージ追加", "ソリューション"],
+      "tech_stack": ["csharp", "dotnet"],
+      "file_patterns": [".csproj", ".sln", "global.json"]
+    },
+    {
+      "name": "csharp-aspnet-webapi",
+      "description": "ASP.NET Core WebAPIのCRUD開発",
+      "keywords": ["webapi", "aspnet", "コントローラー", "rest api", "crud"],
+      "tech_stack": ["csharp", "dotnet", "aspnet"],
+      "file_patterns": ["*Controller.cs", "Program.cs"]
+    },
+    {
+      "name": "react",
+      "description": "React開発の包括スキル（コーディング・テスト・コンポーネント設計）",
+      "keywords": ["react", "リアクト", "reactコンポーネント"],
+      "tech_stack": ["react", "typescript", "javascript"],
+      "file_patterns": [".tsx", ".jsx"]
+    },
+    {
+      "name": "react-coding",
+      "description": "Reactコーディングのベストプラクティスとコード品質保証",
+      "keywords": ["jsx", "tsx", "hooks", "usestate", "useeffect"],
+      "tech_stack": ["react", "typescript"],
+      "file_patterns": [".tsx", ".jsx"]
+    },
+    {
+      "name": "react-testing",
+      "description": "Vitest/JestとTesting Libraryを使ったReactテスト",
+      "keywords": ["react testing", "testing library", "render", "screen"],
+      "tech_stack": ["react", "vitest", "jest"],
+      "file_patterns": ["*.test.tsx", "*.spec.tsx"]
+    },
+    {
+      "name": "react-components",
+      "description": "Reactコンポーネント設計とカスタムHooks作成",
+      "keywords": ["コンポーネント設計", "カスタムフック", "状態管理", "zustand"],
+      "tech_stack": ["react", "typescript"],
+      "file_patterns": [".tsx"]
+    },
+    {
+      "name": "typescript-coding",
+      "description": "TypeScript/JavaScriptコーディングのベストプラクティス",
+      "keywords": ["typescript", "ts", "型定義", "interface", "type"],
+      "tech_stack": ["typescript", "javascript"],
+      "file_patterns": [".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]
+    },
+    {
+      "name": "typescript-testing",
+      "description": "Vitest/Jestを使ったTypeScriptテスト",
+      "keywords": ["vitest", "jest", "テスト", "test", "spec"],
+      "tech_stack": ["typescript", "vitest", "jest"],
+      "file_patterns": ["*.test.ts", "*.spec.ts"]
+    },
+    {
+      "name": "basic-design",
+      "description": "基本設計書の作成（画面設計、データ設計、API設計、アーキテクチャ）",
+      "keywords": ["基本設計", "画面設計", "アーキテクチャ設計", "システム構成"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "detailed-design",
+      "description": "詳細設計書の作成（クラス設計、シーケンス図、DB設計）",
+      "keywords": ["詳細設計", "クラス設計", "シーケンス図", "エラー処理設計"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "er-diagram-mermaid",
+      "description": "Mermaid記法でER図を作成",
+      "keywords": ["er図", "エンティティ関係図", "テーブル構造", "データベース図"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "material-ui",
+      "description": "MUI/Material UIを使用したReact開発",
+      "keywords": ["mui", "material ui", "マテリアルui", "sx prop", "createtheme", "grid2"],
+      "tech_stack": ["react", "typescript", "mui"],
+      "file_patterns": [".tsx", ".jsx"]
+    },
+    {
+      "name": "project-estimation",
+      "description": "ソフトウェア開発プロジェクトの見積もり作成",
+      "keywords": ["見積もり", "工数", "費用計算", "開発期間", "pert"],
+      "tech_stack": [],
+      "file_patterns": []
     }
   ]
 }
