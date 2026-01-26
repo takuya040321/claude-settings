@@ -1,0 +1,298 @@
+{
+  "skills": [
+    {
+      "name": "python-coding",
+      "description": "Pythonコーディングのベストプラクティスとコード品質保証",
+      "keywords": ["python", "py", ".py", "black", "ruff", "mypy", "pip", "pyproject", "pytest"],
+      "tech_stack": ["python"],
+      "file_patterns": [".py", ".pyi", "pyproject.toml", "requirements.txt", "setup.py"]
+    },
+    {
+      "name": "python-testing",
+      "description": "pytestを使ったテストの作成・実行ガイド",
+      "keywords": ["pytest", "テスト", "test", "unittest", "mock", "fixture"],
+      "tech_stack": ["python"],
+      "file_patterns": ["test_*.py", "*_test.py", "conftest.py"]
+    },
+    {
+      "name": "commit",
+      "description": "Conventional Commits形式でgitコミットを作成",
+      "keywords": ["コミット", "commit", "git commit", "変更をコミット"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "github-pr",
+      "description": "GitHubプルリクエストの作成・レビュー・マージ",
+      "keywords": ["pr", "pull request", "プルリクエスト", "pr作成", "prを作成", "マージ", "レビュー"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "github-issues",
+      "description": "GitHub Issueの作成・管理",
+      "keywords": ["issue", "イシュー", "issue作成", "バグ報告", "ラベル"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "github-actions",
+      "description": "GitHub Actions / CI/CD操作",
+      "keywords": ["ci", "cd", "ci/cd", "actions", "ワークフロー", "workflow", "ジョブ", "job"],
+      "tech_stack": [],
+      "file_patterns": [".github/workflows/*.yml", ".github/workflows/*.yaml"]
+    },
+    {
+      "name": "github-release",
+      "description": "GitHubリリース・タグ管理",
+      "keywords": ["リリース", "release", "タグ", "tag", "バージョン", "version", "アセット"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "gas-spreadsheet",
+      "description": "GASによるスプレッドシート操作の包括的ガイド",
+      "keywords": ["gas", "google apps script", "スプレッドシート", "spreadsheet", "シート", "clasp"],
+      "tech_stack": ["gas", "javascript"],
+      "file_patterns": [".gs", ".clasp.json", "appsscript.json"]
+    },
+    {
+      "name": "gas-spreadsheet-ops",
+      "description": "GASによるスプレッドシートのデータ操作",
+      "keywords": ["セル", "データ取得", "書き込み", "getValues", "setValues", "書式"],
+      "tech_stack": ["gas", "javascript"],
+      "file_patterns": [".gs"]
+    },
+    {
+      "name": "gas-external-integration",
+      "description": "GASによる外部サービス連携",
+      "keywords": ["slack通知", "discord通知", "line通知", "gmail送信", "webhook", "urlfetchapp"],
+      "tech_stack": ["gas", "javascript"],
+      "file_patterns": [".gs"]
+    },
+    {
+      "name": "gas-automation",
+      "description": "GASによる自動化・トリガー設定",
+      "keywords": ["トリガー", "定期実行", "毎日", "毎時", "編集時", "フォーム送信", "バックアップ"],
+      "tech_stack": ["gas", "javascript"],
+      "file_patterns": [".gs"]
+    },
+    {
+      "name": "amazon-sp-api",
+      "description": "Amazon SP-APIマーケットプレイス統合の包括的ガイド",
+      "keywords": ["amazon", "sp-api", "selling partner", "マーケットプレイス", "出品"],
+      "tech_stack": ["python", "nodejs"],
+      "file_patterns": []
+    },
+    {
+      "name": "amazon-sp-api-orders",
+      "description": "Amazon SP-API Orders API操作",
+      "keywords": ["注文", "order", "未出荷", "出荷通知", "shipment"],
+      "tech_stack": ["python", "nodejs"],
+      "file_patterns": []
+    },
+    {
+      "name": "amazon-sp-api-catalog",
+      "description": "Amazon SP-API Catalog API操作",
+      "keywords": ["asin", "カタログ", "catalog", "商品検索", "商品情報"],
+      "tech_stack": ["python", "nodejs"],
+      "file_patterns": []
+    },
+    {
+      "name": "amazon-sp-api-fba",
+      "description": "Amazon SP-API FBA Inventory API操作",
+      "keywords": ["fba", "在庫", "inventory", "入荷プラン", "inbound"],
+      "tech_stack": ["python", "nodejs"],
+      "file_patterns": []
+    },
+    {
+      "name": "amazon-sp-api-feeds",
+      "description": "Amazon SP-API Feeds API操作",
+      "keywords": ["フィード", "feed", "一括登録", "一括更新", "bulk"],
+      "tech_stack": ["python", "nodejs"],
+      "file_patterns": []
+    },
+    {
+      "name": "amazon-sp-api-listings",
+      "description": "Amazon SP-API Listings API操作",
+      "keywords": ["出品", "listing", "価格更新", "在庫更新"],
+      "tech_stack": ["python", "nodejs"],
+      "file_patterns": []
+    },
+    {
+      "name": "browser-automation",
+      "description": "ブラウザ自動操作の包括的ガイド",
+      "keywords": ["ブラウザ", "browser", "自動操作", "スクレイピング", "scraping", "e2e"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "browser-mcp",
+      "description": "Claude in Chrome MCPによるブラウザ操作",
+      "keywords": ["mcp", "chrome", "ページ操作", "スクリーンショット", "フォーム入力"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "browser-playwright",
+      "description": "Playwrightによるブラウザ自動操作",
+      "keywords": ["playwright", "プレイライト"],
+      "tech_stack": ["python", "nodejs", "typescript"],
+      "file_patterns": ["playwright.config.ts", "playwright.config.js"]
+    },
+    {
+      "name": "browser-puppeteer",
+      "description": "Puppeteerによるブラウザ自動操作",
+      "keywords": ["puppeteer", "パペティア"],
+      "tech_stack": ["nodejs", "typescript"],
+      "file_patterns": []
+    },
+    {
+      "name": "browser-selenium",
+      "description": "Seleniumによるブラウザ自動操作",
+      "keywords": ["selenium", "セレニウム", "webdriver"],
+      "tech_stack": ["python", "java"],
+      "file_patterns": []
+    },
+    {
+      "name": "xlsx",
+      "description": "スプレッドシート（.xlsx等）の作成・編集・分析",
+      "keywords": ["xlsx", "excel", "エクセル", "スプレッドシート", "csv", "tsv"],
+      "tech_stack": ["python"],
+      "file_patterns": [".xlsx", ".xlsm", ".csv", ".tsv"]
+    },
+    {
+      "name": "pdf",
+      "description": "PDF操作ツールキット",
+      "keywords": ["pdf", "ピーディーエフ"],
+      "tech_stack": ["python"],
+      "file_patterns": [".pdf"]
+    },
+    {
+      "name": "docx",
+      "description": "Wordドキュメント（.docx）の作成・編集",
+      "keywords": ["docx", "word", "ワード", "ドキュメント"],
+      "tech_stack": ["python"],
+      "file_patterns": [".docx", ".doc"]
+    },
+    {
+      "name": "pptx",
+      "description": "プレゼンテーション（.pptx）の作成・編集",
+      "keywords": ["pptx", "powerpoint", "パワーポイント", "スライド", "プレゼン"],
+      "tech_stack": ["python"],
+      "file_patterns": [".pptx", ".ppt"]
+    },
+    {
+      "name": "frontend-design",
+      "description": "プロダクショングレードのフロントエンドUI作成",
+      "keywords": ["フロントエンド", "frontend", "ui", "ウェブサイト", "ランディングページ", "ダッシュボード"],
+      "tech_stack": ["react", "vue", "svelte", "html", "css", "tailwind"],
+      "file_patterns": [".tsx", ".jsx", ".vue", ".svelte", ".html", ".css"]
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "description": "UI/UXデザインインテリジェンス",
+      "keywords": ["ui/ux", "デザイン", "design", "カラーパレット", "アクセシビリティ", "レスポンシブ"],
+      "tech_stack": ["react", "nextjs", "vue", "svelte", "tailwind", "flutter"],
+      "file_patterns": [".tsx", ".jsx", ".vue", ".svelte"]
+    },
+    {
+      "name": "mcp-builder",
+      "description": "MCPサーバー構築ガイド",
+      "keywords": ["mcp", "model context protocol", "mcpサーバー", "fastmcp"],
+      "tech_stack": ["python", "typescript"],
+      "file_patterns": []
+    },
+    {
+      "name": "skill-creator",
+      "description": "Claudeスキル作成ガイド",
+      "keywords": ["スキル作成", "skill", "スキル更新"],
+      "tech_stack": [],
+      "file_patterns": ["SKILL.md"]
+    },
+    {
+      "name": "theme-factory",
+      "description": "テーマを使用したアーティファクトスタイリング",
+      "keywords": ["テーマ", "theme", "スタイリング", "カラースキーム"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "canvas-design",
+      "description": "PNG/PDFでビジュアルアート作成",
+      "keywords": ["ポスター", "poster", "アート", "art", "ビジュアル", "visual"],
+      "tech_stack": [],
+      "file_patterns": [".png", ".pdf"]
+    },
+    {
+      "name": "doc-coauthoring",
+      "description": "ドキュメント共同執筆ワークフロー",
+      "keywords": ["共同執筆", "提案書", "仕様書", "決定文書"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "web-artifacts-builder",
+      "description": "claude.ai HTMLアーティファクト作成",
+      "keywords": ["アーティファクト", "artifact", "shadcn"],
+      "tech_stack": ["react", "tailwind"],
+      "file_patterns": []
+    },
+    {
+      "name": "webapp-testing",
+      "description": "Playwrightでローカルアプリテスト",
+      "keywords": ["webアプリテスト", "e2eテスト", "ブラウザテスト"],
+      "tech_stack": ["playwright"],
+      "file_patterns": []
+    },
+    {
+      "name": "markdown-writer",
+      "description": "技術ドキュメントをマークダウンで作成・整形",
+      "keywords": ["markdown", "マークダウン", "readme", "api仕様書", "設計書"],
+      "tech_stack": [],
+      "file_patterns": [".md", "README.md"]
+    },
+    {
+      "name": "requirements-definition",
+      "description": "ソフトウェア要件定義ワークフロー",
+      "keywords": ["要件定義", "要件", "機能要件", "非機能要件", "要件整理"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "dhc-online-shop",
+      "description": "DHC公式オンラインショップのスクレイピング・操作",
+      "keywords": ["dhc", "ディーエイチシー"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "html-structure-analyzer",
+      "description": "WebサイトHTML構造解析・セレクタ特定",
+      "keywords": ["html構造", "セレクタ", "dom", "css selector", "xpath"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "vt-cosmetics",
+      "description": "VT Cosmetics公式サイトのスクレイピング・操作",
+      "keywords": ["vt cosmetics", "vtコスメ", "リードルショット"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "vt-cosmetics-browser",
+      "description": "VT Cosmeticsサイトのブラウザ操作",
+      "keywords": ["vt ブラウザ", "vtサイト操作"],
+      "tech_stack": [],
+      "file_patterns": []
+    },
+    {
+      "name": "vt-cosmetics-scraping",
+      "description": "VT Cosmeticsサイトのスクレイピング",
+      "keywords": ["vt スクレイピング", "vtデータ取得"],
+      "tech_stack": ["python", "nodejs", "gas"],
+      "file_patterns": []
+    }
+  ]
+}
