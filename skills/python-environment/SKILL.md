@@ -1,15 +1,15 @@
 ---
 name: python-environment
-description: Python環境構築・依存管理に特化したスキル。pyproject.tomlの作成・編集、仮想環境管理（venv/uv/poetry）、依存関係の追加・更新・削除、pyenvによるPythonバージョン管理、ツール設定（black/ruff/mypy/pytest）をサポート。ユーザーが「環境を構築して」「pyproject.tomlを作成して」「依存関係を追加して」「venvを作成して」などと依頼した場合にトリガー。
+description: Python環境構築・依存管理に特化したスキル。uvをデフォルトで使用。pyproject.tomlの作成・編集、仮想環境管理、依存関係の追加・更新・削除、pyenvによるPythonバージョン管理、ツール設定（black/ruff/mypy/pytest）をサポート。ユーザーが「環境を構築して」「pyproject.tomlを作成して」「依存関係を追加して」「仮想環境を作成して」などと依頼した場合にトリガー。
 ---
 
 # Python Environment
 
-Python開発環境の構築と依存関係管理のガイド。
+Python開発環境の構築と依存関係管理のガイド。**uvをデフォルトで使用する。**
 
 ## プロジェクト初期化
 
-### uv（推奨）
+**uvを使用する（デフォルト）:**
 
 ```bash
 # 新規プロジェクト作成
@@ -19,54 +19,41 @@ Python開発環境の構築と依存関係管理のガイド。
 ~/.claude/skills/python-environment/scripts/init_project.sh uv .
 ```
 
-### poetry
-
-```bash
-~/.claude/skills/python-environment/scripts/init_project.sh poetry myproject
-```
-
-### venv（標準ライブラリ）
-
-```bash
-~/.claude/skills/python-environment/scripts/init_project.sh venv myproject
-```
+> 既存プロジェクトでpoetry/venvが使われている場合のみ、それらを継続使用。
 
 ## 依存関係管理
 
-### 依存関係の追加
+**uvを使用する（デフォルト）:**
 
 ```bash
-# uv
-~/.claude/skills/python-environment/scripts/manage_deps.sh uv add requests pandas
+# パッケージ追加
+uv add requests pandas
 
-# poetry
-~/.claude/skills/python-environment/scripts/manage_deps.sh poetry add requests pandas
+# 開発用パッケージ追加
+uv add --dev pytest black ruff mypy
 
-# venv/pip
-~/.claude/skills/python-environment/scripts/manage_deps.sh pip add requests pandas
+# パッケージ削除
+uv remove requests
+
+# 依存関係更新
+uv lock --upgrade && uv sync
 ```
 
-### 開発用依存関係の追加
+## 仮想環境
+
+**uvを使用する（デフォルト）:**
 
 ```bash
-# uv
-~/.claude/skills/python-environment/scripts/manage_deps.sh uv add-dev pytest black ruff mypy
+# 仮想環境作成と依存関係インストール（自動）
+uv sync
 
-# poetry
-~/.claude/skills/python-environment/scripts/manage_deps.sh poetry add-dev pytest black ruff mypy
+# 仮想環境でコマンド実行
+uv run python script.py
+uv run pytest
+uv run black src/
 ```
 
-### 依存関係の削除
-
-```bash
-~/.claude/skills/python-environment/scripts/manage_deps.sh uv remove requests
-```
-
-### 依存関係の更新
-
-```bash
-~/.claude/skills/python-environment/scripts/manage_deps.sh uv update
-```
+> `uv run`で実行すれば仮想環境の有効化は不要。
 
 ## pyproject.toml
 
@@ -125,44 +112,6 @@ python_files = ["test_*.py", "*_test.py"]
 addopts = "-v --tb=short"
 ```
 
-## 仮想環境
-
-### uv
-
-```bash
-# 仮想環境作成（自動）
-uv sync
-
-# 仮想環境でコマンド実行
-uv run python script.py
-uv run pytest
-```
-
-### venv
-
-```bash
-# 作成
-python -m venv .venv
-
-# 有効化
-source .venv/bin/activate  # macOS/Linux
-.venv\Scripts\activate     # Windows
-
-# 無効化
-deactivate
-```
-
-### poetry
-
-```bash
-# 仮想環境作成
-poetry install
-
-# 仮想環境で実行
-poetry run python script.py
-poetry shell  # シェルを起動
-```
-
 ## Pythonバージョン管理（pyenv）
 
 ```bash
@@ -174,9 +123,6 @@ pyenv install 3.12.0
 
 # ローカル設定（プロジェクト単位）
 pyenv local 3.12.0
-
-# グローバル設定
-pyenv global 3.12.0
 
 # 現在のバージョン確認
 pyenv version
@@ -196,41 +142,40 @@ project/
 │   ├── conftest.py
 │   └── test_main.py
 ├── pyproject.toml
+├── uv.lock
 ├── README.md
-└── .python-version    # pyenv用
+└── .python-version
 ```
-
-## パッケージマネージャ比較
-
-| 機能 | uv | poetry | pip/venv |
-|------|-----|--------|----------|
-| 速度 | 非常に速い | 普通 | 普通 |
-| ロックファイル | uv.lock | poetry.lock | 手動 |
-| 仮想環境管理 | 統合 | 統合 | 別途venv |
-| pyproject.toml | 対応 | 対応 | 部分対応 |
-| 推奨度 | 新規プロジェクト | 既存プロジェクト | レガシー |
 
 ## トラブルシューティング
 
-### 依存関係の競合
-
 ```bash
-# uv: 競合を確認
+# 依存関係の競合確認
 uv pip check
 
 # 強制再インストール
 uv sync --refresh
+
+# キャッシュクリア
+uv cache clean
 ```
 
-### キャッシュクリア
+## 既存プロジェクト（poetry/venv）
+
+既存プロジェクトでpoetryやvenvが使われている場合のみ以下を使用。
+
+### poetry
 
 ```bash
-# uv
-uv cache clean
+poetry install          # 依存関係インストール
+poetry add requests     # パッケージ追加
+poetry run python x.py  # 実行
+```
 
-# poetry
-poetry cache clear pypi --all
+### venv/pip
 
-# pip
-pip cache purge
+```bash
+python -m venv .venv              # 仮想環境作成
+source .venv/bin/activate         # 有効化
+pip install -r requirements.txt   # インストール
 ```

@@ -40,10 +40,10 @@ Python開発の包括的なガイド。タスクに応じて適切な特化ス�
 
 ### 3. 環境構築・依存管理（python-environment）
 
-以下の場合に`python-environment`スキルを使用：
+以下の場合に`python-environment`スキルを使用（**uvをデフォルトで使用**）：
 
 - pyproject.tomlの作成・編集
-- 仮想環境の作成・管理（uv/poetry/venv）
+- 仮想環境の作成・管理（uv）
 - 依存関係の追加・更新・削除
 - Pythonバージョン管理（pyenv）
 - 開発ツールの設定
@@ -87,10 +87,10 @@ Python開発の包括的なガイド。タスクに応じて適切な特化ス�
 
 ```bash
 # パッケージ追加
-~/.claude/skills/python-environment/scripts/manage_deps.sh uv add requests
+uv add requests
 
 # 開発用パッケージ追加
-~/.claude/skills/python-environment/scripts/manage_deps.sh uv add-dev pytest
+uv add --dev pytest
 ```
 
 ## 推奨ツールスタック
@@ -118,6 +118,7 @@ project/
 │   ├── conftest.py
 │   └── test_main.py
 ├── pyproject.toml
+├── uv.lock
 ├── README.md
 └── .python-version
 ```
