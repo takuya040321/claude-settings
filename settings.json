@@ -50,7 +50,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay /System/Library/Sounds/Glass.aiff & osascript -e 'display notification \"操作の許可が必要です\" with title \"Claude Code\" sound name \"\"'"
+            "command": "afplay /System/Library/Sounds/Glass.aiff & osascript -e 'display notification \"操作の許可が必要です\" with title \"Claude Code\"'"
           }
         ]
       }
@@ -60,7 +60,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay /System/Library/Sounds/Glass.aiff & osascript -e 'display notification \"処理が完了しました\" with title \"Claude Code\" sound name \"\"'"
+            "command": "afplay /System/Library/Sounds/Glass.aiff & osascript -e 'display notification \"処理が完了しました\" with title \"Claude Code\"'"
           }
         ]
       }
