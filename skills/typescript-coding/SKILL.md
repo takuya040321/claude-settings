@@ -1,6 +1,23 @@
-# JavaScript/TypeScript ベストプラクティス
+---
+name: typescript-coding
+description: TypeScript/JavaScriptコーディングのベストプラクティスとコード品質保証。TypeScript/JavaScriptファイル（.ts, .tsx, .js, .jsx, .mjs, .cjs）の作成・編集タスクを完了した際に使用。コーディングタスク終了後にprettier/eslint/tscでフォーマット・品質・型チェックを実行し、すべてのチェックに合格するまで修正を繰り返す。
+---
 
-## TypeScript推奨事項
+# TypeScript Coding
+
+TypeScript/JavaScriptコーディングのベストプラクティスとコード品質保証を提供する。
+
+## 必須ワークフロー
+
+TypeScriptコーディングタスク完了時、必ず以下を実行：
+
+```bash
+~/.claude/skills/typescript-coding/scripts/check.sh <対象ファイルまたはディレクトリ>
+```
+
+**重要**: エラーが検出された場合、すべてのエラーを修正し、チェックに合格するまでスクリプトを再実行すること。
+
+## コーディング規約
 
 ### 型定義
 
@@ -27,8 +44,9 @@ interface ApiResponse<T> {
 
 ### 厳格な型チェック
 
+tsconfig.jsonで以下を有効化：
+
 ```json
-// tsconfig.json
 {
   "compilerOptions": {
     "strict": true,
@@ -51,14 +69,7 @@ function isUser(obj: unknown): obj is User {
     'name' in obj
   );
 }
-
-// 使用例
-if (isUser(response.data)) {
-  console.log(response.data.name);
-}
 ```
-
-## コーディングスタイル（ESLint/Prettier準拠）
 
 ### 命名規則
 
@@ -70,20 +81,7 @@ if (isUser(response.data)) {
 | ファイル | kebab-case | `user-service.ts` |
 | コンポーネント | PascalCase | `UserProfile.tsx` |
 
-### フォーマット
-
-```javascript
-// Prettier設定
-{
-  "semi": true,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "es5",
-  "printWidth": 100
-}
-```
-
-## モジュール構成（ES Modules）
+### モジュール構成（ES Modules）
 
 ```typescript
 // 名前付きエクスポートを優先
@@ -154,47 +152,6 @@ class UserNotFoundError extends AppError {
 }
 ```
 
-## テスト（Jest/Vitest）
-
-```typescript
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { UserService } from './user-service';
-
-describe('UserService', () => {
-  let service: UserService;
-
-  beforeEach(() => {
-    service = new UserService();
-  });
-
-  describe('createUser', () => {
-    it('should create a user with valid data', async () => {
-      const user = await service.createUser({
-        name: 'John',
-        email: 'john@example.com',
-      });
-
-      expect(user).toMatchObject({
-        name: 'John',
-        email: 'john@example.com',
-      });
-      expect(user.id).toBeDefined();
-    });
-
-    it('should throw error for invalid email', async () => {
-      await expect(
-        service.createUser({ name: 'John', email: 'invalid' })
-      ).rejects.toThrow('Invalid email');
-    });
-  });
-});
-
-// モック
-vi.mock('./api', () => ({
-  fetchUser: vi.fn().mockResolvedValue({ id: 1, name: 'John' }),
-}));
-```
-
 ## プロジェクト構成
 
 ```
@@ -215,12 +172,10 @@ project/
 └── prettier.config.js
 ```
 
-## 推奨ツール
+## チェックツール
 
 | ツール | 用途 |
 |--------|------|
-| TypeScript | 型安全性 |
-| ESLint | Linting |
 | Prettier | コードフォーマット |
-| Vitest/Jest | テスト |
-| tsx | TypeScript実行 |
+| ESLint | Linting・品質チェック |
+| TypeScript (tsc) | 型チェック |

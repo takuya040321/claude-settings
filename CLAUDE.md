@@ -5,7 +5,7 @@
 
 ## Hooks
 
-コード編集時に自動でフォーマット・品質チェックが実行されます。
+コード編集時に自動でフォーマット・品質チェック・型チェックが実行されます。
 エラーが検出された場合は、すべてのチェックに合格するまで修正してください。
 
 ### 言語別Hooks
@@ -14,7 +14,7 @@
 
 | 言語 | Hook | 処理内容 |
 |------|------|----------|
-| JavaScript/TypeScript | `~/.claude/hooks/javascript/format.sh` | prettier → eslint |
+| JavaScript/TypeScript | `~/.claude/hooks/javascript/format.sh` | prettier → eslint → tsc |
 | Dart/Flutter | `~/.claude/hooks/dart/format.sh` | dart format → dart analyze |
 
 **注**: Pythonは`python-coding`スキルで品質チェックを実行します。
@@ -27,23 +27,18 @@ hookからエラーがフィードバックされた場合:
 3. 再度ファイルを保存する（hookが再実行される）
 4. すべてのチェックに合格するまで繰り返す
 
-## Rules
-
-コーディング規約やベストプラクティスは `~/.claude/rules/` を参照してください。
-
-| ディレクトリ | 内容 |
-|-------------|------|
-| `rules/common/` | コミットルール（Conventional Commits） |
-| `rules/javascript/` | JavaScript/TypeScriptベストプラクティス |
-| `rules/dart/` | Dart/Flutterベストプラクティス |
-
-**注**: Pythonは`python-coding`スキルを参照してください。
-
-コード作成時やコミット時に、該当する言語のルールを参照すること。
+**重要**: 型チェック（tsc）や静的解析（eslint）でNGとなった場合、必ず修正し、OKが出るまで繰り返すこと。
 
 ## Skills
 
 カスタムスキルが定義されている場合は `~/.claude/skills/` を参照してください。
+
+### TypeScript/JavaScript関連スキル
+
+| スキル | 説明 |
+|--------|------|
+| `typescript-coding` | コーディングベストプラクティス + 品質チェック（prettier/eslint/tsc） |
+| `typescript-testing` | Vitest/Jestを使ったテスト作成・実行ガイド |
 
 ### Python関連スキル
 
@@ -66,14 +61,14 @@ hookからエラーがフィードバックされた場合:
 # プロジェクト: MyApp
 
 ## 使用技術
-- Python 3.11
-- FastAPI
-- PostgreSQL
+- TypeScript
+- React
+- Node.js
 
 ## コーディング規約
-- 型ヒントを必ず使用すること
-- docstringはGoogle形式で記述すること
+- 型は厳密に定義すること
+- interfaceを優先して使用すること
 
 ## スキル
-このプロジェクトでは `python-coding` と `python-testing` スキルを使用。
+このプロジェクトでは `typescript-coding` と `typescript-testing` スキルを使用。
 ```
