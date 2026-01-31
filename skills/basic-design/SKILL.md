@@ -80,10 +80,13 @@ docs/
 ├── basic-design.md           # 基本設計書（本体）
 └── diagrams/                  # 図専用ディレクトリ
     ├── system-architecture.md # システム構成図
+    ├── component-diagram.md   # コンポーネント図
     ├── er-diagram.md          # ER図
+    ├── class-diagram.md       # クラス図
     ├── screen-flow.md         # 画面遷移図
     ├── sequence-login.md      # シーケンス図（ログイン）
     ├── sequence-order.md      # シーケンス図（注文処理）
+    ├── flow-{処理名}.md       # フローチャート
     └── ...                    # その他の図
 ```
 
@@ -110,6 +113,7 @@ docs/
 
 ## 4. データ設計
 - [ER図](./diagrams/er-diagram.md)
+- [クラス図](./diagrams/class-diagram.md)
 - テーブル定義書
 - マスターデータ一覧
 
