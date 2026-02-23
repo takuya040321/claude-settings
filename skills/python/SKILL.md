@@ -1,96 +1,40 @@
 ---
 name: python
-description: Python開発の3つの領域（コーディング、テスト、環境設定）を統括する包括スキル。タスクに応じて適切な特化スキルを呼び出す。ユーザーが「Pythonで」「Pythonプロジェクト」「パイソン」などPython開発全般に関わるタスクを依頼した場合にトリガー。
+description: Python開発の3つの領域（コーディング、テスト、環境設定）を統括する包括スキル。タスクに応じて適切な特化リファレンスを参照する。ユーザーが「Pythonで」「Pythonプロジェクト」「パイソン」などPython開発全般に関わるタスクを依頼した場合にトリガー。
 ---
 
 # Python 開発ガイド
 
-Python開発の包括的なガイド。タスクに応じて適切な特化スキルを選択する。
+Python開発の包括的なガイド。タスクに応じて適切なリファレンスを参照する。
 
-## タスク振り分け
+## タスク別リファレンス
 
-### 1. コード作成・品質チェック（python-coding）
+| タスク | リファレンス |
+|--------|-------------|
+| コード作成・品質チェック | [references/coding.md](references/coding.md) |
+| テスト作成・実行（pytest） | [references/testing.md](references/testing.md) |
+| 環境構築・依存管理（uv） | [references/environment.md](references/environment.md) |
 
-以下の場合に`python-coding`スキルを使用：
+### 各領域の概要
 
-- Pythonコードの作成・編集
-- コードのフォーマット（black）
-- リンティング・品質チェック（ruff）
-- 型チェック（mypy）
-- コーディング規約・ベストプラクティス
+- **コーディング** - 型ヒント、Docstring、命名規則、エラーハンドリング、black/ruff/mypy
+- **テスト** - pytest、Fixture、パラメータ化、モック、カバレッジ
+- **環境** - uv（デフォルト）、pyproject.toml、仮想環境、pyenv、ツール設定
 
-**トリガー例**:
-- 「Pythonで関数を作成して」
-- 「このコードをリファクタリングして」
-- 「型ヒントを追加して」
-
-### 2. テスト作成・実行（python-testing）
-
-以下の場合に`python-testing`スキルを使用：
-
-- pytestを使ったテストの作成
-- テストの実行・デバッグ
-- モック・フィクスチャの設定
-- テストカバレッジの計測
-
-**トリガー例**:
-- 「テストを書いて」
-- 「pytestを実行して」
-- 「このクラスのユニットテストを作成して」
-
-### 3. 環境構築・依存管理（python-environment）
-
-以下の場合に`python-environment`スキルを使用（**uvをデフォルトで使用**）：
-
-- pyproject.tomlの作成・編集
-- 仮想環境の作成・管理（uv）
-- 依存関係の追加・更新・削除
-- Pythonバージョン管理（pyenv）
-- 開発ツールの設定
-
-**トリガー例**:
-- 「新しいPythonプロジェクトを作成して」
-- 「pyproject.tomlを作成して」
-- 「requestsパッケージを追加して」
-- 「仮想環境を作成して」
-
-## クイックリファレンス
-
-### プロジェクト初期化（推奨）
+## スクリプト
 
 ```bash
-# uvで新規プロジェクト作成
-~/.claude/skills/python-environment/scripts/init_project.sh uv myproject
+# コード品質チェック（black → ruff → mypy）
+~/.claude/skills/python/scripts/check.sh <対象ファイルまたはディレクトリ>
 
-# 既存ディレクトリで初期化
-~/.claude/skills/python-environment/scripts/init_project.sh uv .
-```
-
-### コード品質チェック
-
-```bash
-# フォーマット・リント・型チェック
-~/.claude/skills/python-coding/scripts/check.sh src/
-```
-
-### テスト実行
-
-```bash
 # テスト実行
-~/.claude/skills/python-testing/scripts/run_tests.sh tests/
+~/.claude/skills/python/scripts/run_tests.sh [テストパス] [--cov]
 
-# カバレッジ付き
-~/.claude/skills/python-testing/scripts/run_tests.sh tests/ --cov
-```
+# プロジェクト初期化
+~/.claude/skills/python/scripts/init_project.sh uv <プロジェクト名>
 
-### 依存関係管理
-
-```bash
-# パッケージ追加
-uv add requests
-
-# 開発用パッケージ追加
-uv add --dev pytest
+# 依存関係管理
+~/.claude/skills/python/scripts/manage_deps.sh <add|remove|list> [パッケージ名]
 ```
 
 ## 推奨ツールスタック
@@ -104,37 +48,11 @@ uv add --dev pytest
 | テスト | pytest | テストフレームワーク |
 | バージョン管理 | pyenv | Pythonバージョン切替 |
 
-## プロジェクト構成（推奨）
-
-```
-project/
-├── src/
-│   └── mypackage/
-│       ├── __init__.py
-│       ├── main.py
-│       └── utils.py
-├── tests/
-│   ├── __init__.py
-│   ├── conftest.py
-│   └── test_main.py
-├── pyproject.toml
-├── uv.lock
-├── README.md
-└── .python-version
-```
-
 ## ワークフロー
 
 ### 新規プロジェクト開始
 
-1. `python-environment`でプロジェクト初期化
-2. `python-coding`でコード作成
-3. `python-testing`でテスト作成・実行
-4. `python-coding`で品質チェック
-
-### 既存プロジェクト作業
-
-1. 必要に応じて`python-environment`で依存関係更新
-2. `python-coding`でコード編集
-3. `python-testing`でテスト実行
-4. `python-coding`で品質チェック
+1. `references/environment.md`でプロジェクト初期化
+2. `references/coding.md`でコード作成
+3. `references/testing.md`でテスト作成・実行
+4. `references/coding.md`で品質チェック

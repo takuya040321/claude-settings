@@ -11,7 +11,7 @@ ASP.NET Core を使用した REST API 開発のベストプラクティスガイ
 
 ```bash
 # 新規WebAPIプロジェクト作成
-~/.claude/skills/csharp-environment/scripts/init_project.sh webapi myapi
+~/.claude/skills/csharp/scripts/init_project.sh webapi myapi
 ```
 
 ## Program.cs（Minimal API 構成）

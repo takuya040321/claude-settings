@@ -282,4 +282,4 @@ function exclusiveProcess() {
 
 ## リファレンス
 
-詳細なAPIリファレンスは[references/api_reference.md](references/api_reference.md)を参照。
+詳細なAPIリファレンスは[api_reference_automation.md](api_reference_automation.md)を参照。

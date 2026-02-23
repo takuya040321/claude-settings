@@ -11,16 +11,16 @@ C#開発環境の構築と依存関係管理のガイド。**dotnet CLIを使用
 
 ```bash
 # コンソールアプリ作成
-~/.claude/skills/csharp-environment/scripts/init_project.sh console myapp
+~/.claude/skills/csharp/scripts/init_project.sh console myapp
 
 # クラスライブラリ作成
-~/.claude/skills/csharp-environment/scripts/init_project.sh classlib mylibrary
+~/.claude/skills/csharp/scripts/init_project.sh classlib mylibrary
 
 # WebAPI作成
-~/.claude/skills/csharp-environment/scripts/init_project.sh webapi myapi
+~/.claude/skills/csharp/scripts/init_project.sh webapi myapi
 
 # 既存ディレクトリで初期化
-~/.claude/skills/csharp-environment/scripts/init_project.sh console .
+~/.claude/skills/csharp/scripts/init_project.sh console .
 ```
 
 ### 手動でのプロジェクト作成
@@ -60,16 +60,16 @@ dotnet sln list
 
 ```bash
 # パッケージ追加
-~/.claude/skills/csharp-environment/scripts/manage_deps.sh add Newtonsoft.Json
+~/.claude/skills/csharp/scripts/manage_deps.sh add Newtonsoft.Json
 
 # バージョン指定で追加
-~/.claude/skills/csharp-environment/scripts/manage_deps.sh add Newtonsoft.Json 13.0.3
+~/.claude/skills/csharp/scripts/manage_deps.sh add Newtonsoft.Json 13.0.3
 
 # パッケージ削除
-~/.claude/skills/csharp-environment/scripts/manage_deps.sh remove Newtonsoft.Json
+~/.claude/skills/csharp/scripts/manage_deps.sh remove Newtonsoft.Json
 
 # パッケージ一覧
-~/.claude/skills/csharp-environment/scripts/manage_deps.sh list
+~/.claude/skills/csharp/scripts/manage_deps.sh list
 ```
 
 ### dotnet コマンド直接実行

@@ -7,7 +7,7 @@ description: Reactコンポーネント設計とUI開発のベストプラクテ
 
 Reactコンポーネント設計とUI開発のベストプラクティスを提供する。
 
-詳細なパターンは `references/` を参照：
+詳細なパターンは the same `references/` directory を参照：
 - `component-patterns.md` - 高度なコンポーネントパターン
 - `hooks-patterns.md` - カスタムHooksパターン集
 - `state-management.md` - 状態管理ガイド

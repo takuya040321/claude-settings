@@ -247,4 +247,4 @@ const userProps = PropertiesService.getUserProperties();
 
 ## リファレンス
 
-詳細なAPIリファレンスは[references/api_reference.md](references/api_reference.md)を参照。
+詳細なAPIリファレンスは[api_reference_integration.md](api_reference_integration.md)を参照。

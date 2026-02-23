@@ -12,7 +12,7 @@ C#コーディングのベストプラクティスとコード品質保証を提
 C#コーディングタスク完了時、必ず以下を実行：
 
 ```bash
-~/.claude/skills/csharp-coding/scripts/check.sh <プロジェクトディレクトリ>
+~/.claude/skills/csharp/scripts/check.sh <プロジェクトディレクトリ>
 ```
 
 **重要**: エラーが検出された場合、すべてのエラーを修正し、チェックに合格するまでスクリプトを再実行すること。
