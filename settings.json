@@ -21,6 +21,18 @@
     "defaultMode": "default"
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/session-start-issue.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -28,6 +40,15 @@
             "type": "command",
             "command": "python3 ~/.claude/hooks/auto_skill_selector.py",
             "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/log-prompt-to-issue.sh",
+            "timeout": 15
           }
         ]
       }
@@ -63,8 +84,18 @@
             "command": "afplay /System/Library/Sounds/Glass.aiff & osascript -e 'display notification \"処理が完了しました\" with title \"Claude Code\"'"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/log-stop-to-issue.sh",
+            "timeout": 15
+          }
+        ]
       }
     ]
   },
-  "language": "日本語"
+  "language": "日本語",
+  "skipDangerousModePermissionPrompt": true
 }
