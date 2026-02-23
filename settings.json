@@ -37,11 +37,6 @@
       {
         "matcher": "Edit|Write",
         "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.claude/hooks/router.py",
-            "timeout": 120
-          }
         ]
       }
     ],
