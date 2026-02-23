@@ -1,11 +1,20 @@
 ---
 name: vt-cosmetics
-description: VT Cosmetics公式オンラインショップ（https://vtcosmetics.jp/）のHTML構造を熟知したスキル。商品検索・一覧取得、商品詳細取得、カート・購入操作のスクレイピングやブラウザ自動操作に使用。ユーザーが「VT Cosmeticsの商品を検索して」「リードルショットの情報を取得して」「VTサイトから商品データを抽出して」「VTのカートに追加して」などと依頼した場合にトリガー。
+description: VT Cosmetics公式オンラインショップ（https://vtcosmetics.jp/）の包括的なスキル。HTML構造・セレクタリファレンス、ブラウザ自動操作、スクレイピングをサポート。ユーザーが「VT Cosmeticsの商品を検索して」「リードルショットの情報を取得して」「VTサイトから商品データを抽出して」「VTのカートに追加して」「VTのサイトをブラウザで操作して」「VTの商品をスクレイピングして」などと依頼した場合にトリガー。
 ---
 
 # VT Cosmetics公式オンラインショップ スキル
 
-VT Cosmetics日本公式サイト（https://vtcosmetics.jp/）のHTML構造とセレクタリファレンス。
+VT Cosmetics日本公式サイト（https://vtcosmetics.jp/）の包括的なスキル。タスクに応じて適切なリファレンスを参照する。
+
+## タスク別リファレンス
+
+| タスク | リファレンス |
+|--------|-------------|
+| Claude in Chromeでのブラウザ自動操作 | [references/browser.md](references/browser.md) |
+| Python/Node.js/GASでのスクレイピング | [references/scraping.md](references/scraping.md) |
+
+以下はHTML構造・セレクタリファレンス（本ファイル内）。
 
 ## サイト概要
 
@@ -298,7 +307,3 @@ if (page3) {
 - **認証**: ログイン必須の機能あり（お気に入り、購入など）
 - **Cafe24固有**: URLパラメータ形式がCafe24標準
 
-## 関連スキル
-
-- `vt-cosmetics-scraping` - Python/Node.js/GASによるスクレイピング
-- `vt-cosmetics-browser` - Claude in Chrome MCPによるブラウザ自動操作

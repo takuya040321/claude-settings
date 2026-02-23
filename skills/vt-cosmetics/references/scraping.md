@@ -629,7 +629,3 @@ function exportProductDetails(productNos) {
 - **利用規約**: スクレイピング前に利用規約を確認
 - **韓国語UI**: ページネーションボタン等が韓国語（「다음」= 次）
 
-## 関連スキル
-
-- `vt-cosmetics` - 包括的なHTML構造・セレクタリファレンス
-- `vt-cosmetics-browser` - Claude in Chrome MCPによるブラウザ自動操作
