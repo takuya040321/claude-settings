@@ -1,21 +1,7 @@
 {
   "includeCoAuthoredBy": false,
   "permissions": {
-    "allow": [
-      "Bash(flutter:*)",
-      "Bash(git merge:*)",
-      "Bash(git add:*)",
-      "Bash(git checkout:*)",
-      "Bash(git push:*)",
-      "Bash(git merge:*)",
-      "Bash(git branch:*)",
-      "Bash(gh:*)",
-      "mcp__serena__*",
-      "mcp__serena__find_file",
-      "Bash(npx tsc:*)",
-      "Bash(git pull:*)",
-      "Bash(git reset:*)"
-    ],
+    "allow": [],
     "deny": [],
     "ask": [],
     "defaultMode": "default"
@@ -35,13 +21,7 @@
     ],
     "UserPromptSubmit": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.claude/hooks/auto_skill_selector.py",
-            "timeout": 5
-          }
-        ]
+        "hooks": []
       },
       {
         "hooks": [
