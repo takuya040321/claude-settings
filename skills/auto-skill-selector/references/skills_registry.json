@@ -419,6 +419,13 @@
       "keywords": ["見積もり", "工数", "費用計算", "開発期間", "pert"],
       "tech_stack": [],
       "file_patterns": []
+    },
+    {
+      "name": "tech-career-sheet",
+      "description": "プロジェクトから技術経歴書・スキルシート情報を抽出・出力",
+      "keywords": ["技術経歴書", "スキルシート", "経歴書", "職務経歴書", "キャリアシート", "career sheet"],
+      "tech_stack": [],
+      "file_patterns": []
     }
   ]
 }
