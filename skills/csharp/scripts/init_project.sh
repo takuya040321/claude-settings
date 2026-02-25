@@ -23,6 +23,12 @@ if ! command -v dotnet &> /dev/null; then
     error "dotnet CLI is not installed. Install from: https://dotnet.microsoft.com/download"
 fi
 
+# .NETバージョン検出（インストール済みの最新を使用）
+DOTNET_FULL_VERSION=$(dotnet --version)
+DOTNET_MAJOR_MINOR=$(echo "$DOTNET_FULL_VERSION" | cut -d. -f1,2)
+TARGET_FRAMEWORK="net${DOTNET_MAJOR_MINOR}"
+info "Detected .NET SDK: $DOTNET_FULL_VERSION (target: $TARGET_FRAMEWORK)"
+
 # テンプレート検証
 case "$TEMPLATE" in
     console|classlib|webapi|worker|blazor|mvc|razorpage)
@@ -91,7 +97,6 @@ fi
 
 # global.json 作成
 if [ ! -f "global.json" ]; then
-    DOTNET_VERSION=$(dotnet --version | cut -d. -f1,2)
     cat > global.json << EOF
 {
   "sdk": {
@@ -105,10 +110,10 @@ fi
 
 # Directory.Build.props 作成
 if [ ! -f "Directory.Build.props" ]; then
-    cat > Directory.Build.props << 'EOF'
+    cat > Directory.Build.props << EOF
 <Project>
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>${TARGET_FRAMEWORK}</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -116,7 +121,7 @@ if [ ! -f "Directory.Build.props" ]; then
   </PropertyGroup>
 </Project>
 EOF
-    info "Created Directory.Build.props"
+    info "Created Directory.Build.props (target: ${TARGET_FRAMEWORK})"
 fi
 
 # .gitignore 作成
@@ -171,7 +176,7 @@ if [ ! -f "README.md" ]; then
 
 ## Prerequisites
 
-- .NET 8.0 SDK or later
+- .NET SDK ${DOTNET_MAJOR_MINOR} or later
 
 ## Build
 

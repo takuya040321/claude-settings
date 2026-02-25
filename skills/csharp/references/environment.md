@@ -107,12 +107,16 @@ dotnet list reference
 
 ## .csproj 構成
 
+> **注意**: `TargetFramework` にはインストール済みの最新 .NET バージョンを使用する。
+> `dotnet --version` で確認し、例えば `9.0.x` なら `net9.0` を指定する。
+
 ### 基本構造
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <!-- dotnet --version の結果に合わせて設定 -->
+    <TargetFramework>net{MAJOR}.{MINOR}</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -125,7 +129,7 @@ dotnet list reference
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net{MAJOR}.{MINOR}</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -137,7 +141,7 @@ dotnet list reference
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net{MAJOR}.{MINOR}</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -149,7 +153,7 @@ dotnet list reference
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net{MAJOR}.{MINOR}</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>false</IsPackable>
@@ -193,20 +197,24 @@ MySolution/
 │       ├── MyApp.Tests.csproj
 │       └── UnitTests/
 ├── MySolution.sln
-├── global.json          # .NETバージョン固定
+├── global.json          # .NETバージョン管理
 ├── Directory.Build.props # 共通ビルド設定
 └── README.md
 ```
 
-### global.json（SDKバージョン固定）
+### global.json（SDKバージョン管理）
 
-```json
+```bash
+# インストール済みの最新バージョンで生成する
+DOTNET_VER=$(dotnet --version)
+cat > global.json << EOF
 {
   "sdk": {
-    "version": "8.0.100",
+    "version": "$DOTNET_VER",
     "rollForward": "latestFeature"
   }
 }
+EOF
 ```
 
 ### Directory.Build.props（共通設定）
@@ -214,7 +222,8 @@ MySolution/
 ```xml
 <Project>
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <!-- dotnet --version の結果に合わせて設定 -->
+    <TargetFramework>net{MAJOR}.{MINOR}</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -225,6 +234,8 @@ MySolution/
 
 ## .NETバージョン管理
 
+> **重要**: 常にインストール済みの最新 .NET SDK を使用する。特定バージョンに固定しない。
+
 ```bash
 # インストール済みSDK一覧
 dotnet --list-sdks
@@ -232,11 +243,17 @@ dotnet --list-sdks
 # インストール済みランタイム一覧
 dotnet --list-runtimes
 
-# 現在のバージョン
+# 現在のバージョン確認（このバージョンに合わせて TargetFramework を設定）
 dotnet --version
 
-# 新しいプロジェクトのデフォルトフレームワーク指定
-dotnet new console --framework net8.0
+# TargetFramework の決定方法
+# dotnet --version が "9.0.100" なら → net9.0
+# dotnet --version が "10.0.100" なら → net10.0
+DOTNET_MAJOR_MINOR=$(dotnet --version | cut -d. -f1,2)
+echo "net${DOTNET_MAJOR_MINOR}"
+
+# 新しいプロジェクト作成時（フレームワーク指定は不要、デフォルトで最新が使われる）
+dotnet new console
 ```
 
 ## よく使うパッケージ
