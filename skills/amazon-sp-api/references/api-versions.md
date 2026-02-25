@@ -11,9 +11,16 @@
 | Listings Items | 2021-08-01 | /listings/2021-08-01 |
 | Catalog Items | 2022-04-01 | /catalog/2022-04-01 |
 | Feeds | 2021-06-30 | /feeds/2021-06-30 |
-| Product Pricing | v0 | /products/pricing/v0 |
+| Product Pricing | v0 / v2022-05-01 | /products/pricing/v0 |
 | Reports | 2021-06-30 | /reports/2021-06-30 |
 | Notifications | v1 | /notifications/v1 |
+| Finances | v0 / v2024-06-19 | /finances/v0 |
+| Product Fees | v0 | /products/fees/v0 |
+| Sales | v1 | /sales/v1 |
+| Sellers | v1 | /sellers/v1 |
+| Tokens | 2021-03-01 | /tokens/2021-03-01 |
+| Fulfillment Outbound | 2020-07-01 | /fba/outbound/2020-07-01 |
+| Shipping | v2 | /shipping/v2 |
 
 ## APIエンドポイント
 
