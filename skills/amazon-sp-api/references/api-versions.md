@@ -4,7 +4,7 @@
 
 | API | バージョン | ベースパス |
 |-----|----------|-----------|
-| Orders | v0 | /orders/v0 |
+| Orders | 2026-01-01 | /orders/2026-01-01 |
 | FBA Inventory | v1 | /fba/inventory/v1 |
 | FBA Inbound | v0 | /fba/inbound/v0 |
 | FBA Inbound Eligibility | v1 | /fba/inbound/v1 |
