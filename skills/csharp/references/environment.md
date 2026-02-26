@@ -36,7 +36,7 @@ dotnet new classlib -n MyLibrary -o src/MyLibrary
 dotnet new webapi -n MyApi -o src/MyApi
 
 # テストプロジェクト
-dotnet new xunit -n MyApp.Tests -o tests/MyApp.Tests
+dotnet new xunit -n MyApp.Tests -o src/MyApp.Tests
 ```
 
 ## ソリューション管理
@@ -47,7 +47,7 @@ dotnet new sln -n MySolution
 
 # プロジェクトをソリューションに追加
 dotnet sln add src/MyApp/MyApp.csproj
-dotnet sln add tests/MyApp.Tests/MyApp.Tests.csproj
+dotnet sln add src/MyApp.Tests/MyApp.Tests.csproj
 
 # ソリューションからプロジェクトを削除
 dotnet sln remove src/MyApp/MyApp.csproj
@@ -99,7 +99,7 @@ dotnet list package --outdated --format json | jq -r '.projects[].frameworks[].t
 dotnet add src/MyApp/MyApp.csproj reference src/MyLibrary/MyLibrary.csproj
 
 # テストプロジェクトからメインプロジェクトを参照
-dotnet add tests/MyApp.Tests/MyApp.Tests.csproj reference src/MyApp/MyApp.csproj
+dotnet add src/MyApp.Tests/MyApp.Tests.csproj reference src/MyApp/MyApp.csproj
 
 # 参照一覧
 dotnet list reference
@@ -107,15 +107,15 @@ dotnet list reference
 
 ## .csproj 構成
 
-> **注意**: `TargetFramework` にはインストール済みの最新 .NET バージョンを使用する。
-> `dotnet --version` で確認し、例えば `9.0.x` なら `net9.0` を指定する。
+> **注意**: `TargetFramework` には .NET の最新安定版を使用する。
+> 最新安定版は releases-index.json から取得し、例えば `9.0` なら `net9.0` を指定する。
 
 ### 基本構造
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- dotnet --version の結果に合わせて設定 -->
+    <!-- 最新安定版の .NET バージョンを設定 -->
     <TargetFramework>net{MAJOR}.{MINOR}</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -174,7 +174,7 @@ dotnet list reference
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MyApp\MyApp.csproj" />
+    <ProjectReference Include="..\MyApp\MyApp.csproj" />
   </ItemGroup>
 </Project>
 ```
@@ -189,28 +189,34 @@ MySolution/
 │   ├── MyApp/
 │   │   ├── MyApp.csproj
 │   │   └── Program.cs
-│   └── MyApp.Core/
-│       ├── MyApp.Core.csproj
-│       └── Services/
-├── tests/
+│   ├── MyApp.Core/
+│   │   ├── MyApp.Core.csproj
+│   │   └── Services/
 │   └── MyApp.Tests/
 │       ├── MyApp.Tests.csproj
 │       └── UnitTests/
+├── docs/                  # 設計書・仕様書等のドキュメント
 ├── MySolution.sln
-├── global.json          # .NETバージョン管理
-├── Directory.Build.props # 共通ビルド設定
+├── global.json            # .NETバージョン管理
+├── Directory.Build.props  # 共通ビルド設定
+├── .gitignore
+├── .gitattributes
 └── README.md
 ```
 
 ### global.json（SDKバージョン管理）
 
 ```bash
-# インストール済みの最新バージョンで生成する
-DOTNET_VER=$(dotnet --version)
+# .NETの最新安定版で生成する
+DOTNET_STABLE=$(curl -s https://dotnetcli.azureedge.net/dotnet/release-metadata/releases-index.json | jq -r '[."releases-index"[] | select(."support-phase" == "active" or ."support-phase" == "lts")] | sort_by(."channel-version") | last | ."latest-sdk"')
+# 取得できない場合はフォールバック
+if [ -z "$DOTNET_STABLE" ] || [ "$DOTNET_STABLE" = "null" ]; then
+    DOTNET_STABLE="9.0.100"
+fi
 cat > global.json << EOF
 {
   "sdk": {
-    "version": "$DOTNET_VER",
+    "version": "$DOTNET_STABLE",
     "rollForward": "latestFeature"
   }
 }
@@ -222,7 +228,7 @@ EOF
 ```xml
 <Project>
   <PropertyGroup>
-    <!-- dotnet --version の結果に合わせて設定 -->
+    <!-- 最新安定版の .NET バージョンを設定 -->
     <TargetFramework>net{MAJOR}.{MINOR}</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -234,23 +240,18 @@ EOF
 
 ## .NETバージョン管理
 
-> **重要**: 常にインストール済みの最新 .NET SDK を使用する。特定バージョンに固定しない。
+> **重要**: 常に .NET の最新安定版を使用する。インストール済みバージョンに依存しない。
 
 ```bash
-# インストール済みSDK一覧
-dotnet --list-sdks
+# 最新安定版の確認方法
+curl -s https://dotnetcli.azureedge.net/dotnet/release-metadata/releases-index.json | jq -r \
+  '[."releases-index"[] | select(."support-phase" == "active" or ."support-phase" == "lts")] | sort_by(."channel-version") | last | ."channel-version"'
 
-# インストール済みランタイム一覧
-dotnet --list-runtimes
-
-# 現在のバージョン確認（このバージョンに合わせて TargetFramework を設定）
-dotnet --version
+# 取得できない場合のフォールバック: 最新LTS版（net9.0）を使用
 
 # TargetFramework の決定方法
-# dotnet --version が "9.0.100" なら → net9.0
-# dotnet --version が "10.0.100" なら → net10.0
-DOTNET_MAJOR_MINOR=$(dotnet --version | cut -d. -f1,2)
-echo "net${DOTNET_MAJOR_MINOR}"
+# 最新安定版が "9.0" なら → net9.0
+# 最新安定版が "10.0" なら → net10.0
 
 # 新しいプロジェクト作成時（フレームワーク指定は不要、デフォルトで最新が使われる）
 dotnet new console

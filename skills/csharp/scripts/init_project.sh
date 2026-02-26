@@ -23,11 +23,20 @@ if ! command -v dotnet &> /dev/null; then
     error "dotnet CLI is not installed. Install from: https://dotnet.microsoft.com/download"
 fi
 
-# .NETバージョン検出（インストール済みの最新を使用）
-DOTNET_FULL_VERSION=$(dotnet --version)
-DOTNET_MAJOR_MINOR=$(echo "$DOTNET_FULL_VERSION" | cut -d. -f1,2)
+# .NETの最新安定版を取得
+DOTNET_CHANNEL=$(curl -s https://dotnetcli.azureedge.net/dotnet/release-metadata/releases-index.json 2>/dev/null | jq -r '[."releases-index"[] | select(."support-phase" == "active" or ."support-phase" == "lts")] | sort_by(."channel-version") | last | ."channel-version"' 2>/dev/null)
+DOTNET_LATEST_SDK=$(curl -s https://dotnetcli.azureedge.net/dotnet/release-metadata/releases-index.json 2>/dev/null | jq -r '[."releases-index"[] | select(."support-phase" == "active" or ."support-phase" == "lts")] | sort_by(."channel-version") | last | ."latest-sdk"' 2>/dev/null)
+# 取得できない場合はフォールバック（最新LTS版）
+if [ -z "$DOTNET_CHANNEL" ] || [ "$DOTNET_CHANNEL" = "null" ]; then
+    DOTNET_CHANNEL="9.0"
+    warn "Could not fetch latest stable version, falling back to $DOTNET_CHANNEL"
+fi
+if [ -z "$DOTNET_LATEST_SDK" ] || [ "$DOTNET_LATEST_SDK" = "null" ]; then
+    DOTNET_LATEST_SDK="${DOTNET_CHANNEL}.100"
+fi
+DOTNET_MAJOR_MINOR="$DOTNET_CHANNEL"
 TARGET_FRAMEWORK="net${DOTNET_MAJOR_MINOR}"
-info "Detected .NET SDK: $DOTNET_FULL_VERSION (target: $TARGET_FRAMEWORK)"
+info "Latest stable .NET: $DOTNET_CHANNEL (SDK: $DOTNET_LATEST_SDK, target: $TARGET_FRAMEWORK)"
 
 # テンプレート検証
 case "$TEMPLATE" in
@@ -70,7 +79,7 @@ else
 fi
 
 # ディレクトリ構造作成
-mkdir -p src tests
+mkdir -p src docs
 
 # メインプロジェクト作成
 if [ ! -d "src/$SOLUTION_NAME" ]; then
@@ -82,15 +91,15 @@ else
 fi
 
 # テストプロジェクト作成
-if [ ! -d "tests/$SOLUTION_NAME.Tests" ]; then
-    dotnet new xunit -n "$SOLUTION_NAME.Tests" -o "tests/$SOLUTION_NAME.Tests"
-    dotnet sln add "tests/$SOLUTION_NAME.Tests/$SOLUTION_NAME.Tests.csproj"
-    dotnet add "tests/$SOLUTION_NAME.Tests/$SOLUTION_NAME.Tests.csproj" reference "src/$SOLUTION_NAME/$SOLUTION_NAME.csproj"
+if [ ! -d "src/$SOLUTION_NAME.Tests" ]; then
+    dotnet new xunit -n "$SOLUTION_NAME.Tests" -o "src/$SOLUTION_NAME.Tests"
+    dotnet sln add "src/$SOLUTION_NAME.Tests/$SOLUTION_NAME.Tests.csproj"
+    dotnet add "src/$SOLUTION_NAME.Tests/$SOLUTION_NAME.Tests.csproj" reference "src/$SOLUTION_NAME/$SOLUTION_NAME.csproj"
 
     # Moqパッケージを追加
-    dotnet add "tests/$SOLUTION_NAME.Tests/$SOLUTION_NAME.Tests.csproj" package Moq
+    dotnet add "src/$SOLUTION_NAME.Tests/$SOLUTION_NAME.Tests.csproj" package Moq
 
-    info "Created test project: tests/$SOLUTION_NAME.Tests"
+    info "Created test project: src/$SOLUTION_NAME.Tests"
 else
     warn "Test project already exists, skipping"
 fi
@@ -100,7 +109,7 @@ if [ ! -f "global.json" ]; then
     cat > global.json << EOF
 {
   "sdk": {
-    "version": "$(dotnet --version)",
+    "version": "$DOTNET_LATEST_SDK",
     "rollForward": "latestFeature"
   }
 }
@@ -201,9 +210,9 @@ dotnet run --project src/$SOLUTION_NAME/$SOLUTION_NAME.csproj
 \`\`\`
 $SOLUTION_NAME/
 ├── src/
-│   └── $SOLUTION_NAME/          # Main project
-├── tests/
+│   ├── $SOLUTION_NAME/          # Main project
 │   └── $SOLUTION_NAME.Tests/    # Test project
+├── docs/                        # Documentation
 ├── $SOLUTION_NAME.sln
 ├── global.json
 ├── Directory.Build.props

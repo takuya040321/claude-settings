@@ -530,11 +530,11 @@ MyApi/
 │       ├── Validators/
 │       │   └── CreateUserRequestValidator.cs
 │       └── appsettings.json
-└── tests/
-    └── MyApi.Tests/
-        ├── MyApi.Tests.csproj
-        └── Controllers/
-            └── UsersControllerTests.cs
+│   └── MyApi.Tests/
+│       ├── MyApi.Tests.csproj
+│       └── Controllers/
+│           └── UsersControllerTests.cs
+└── docs/
 ```
 
 ## appsettings.json
