@@ -35,8 +35,34 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|Write",
         "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/log-tool-use.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/log-subagent.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/log-subagent.sh",
+            "timeout": 5000
+          }
         ]
       }
     ],
